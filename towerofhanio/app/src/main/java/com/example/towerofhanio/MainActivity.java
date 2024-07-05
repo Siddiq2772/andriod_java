@@ -1,10 +1,6 @@
 package com.example.towerofhanio;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -13,23 +9,26 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.towerofhanio.R;
-import com.example.towerofhanio.towerofhanio;
+class demo extends Towerofhanio{
 
+}
 public class MainActivity extends AppCompatActivity {
 
-    towerofhanio t ;
-    private Button button ;
-    private TextView output ;
-    private EditText input ;
+    private final demo t = new demo();
 
+    {
+        findViewById(R.id.button);
+    }
 
+    private final TextView output = findViewById(R.id.textView) ;
+
+    {
+        findViewById(R.id.editTextNumber);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        button = findViewById(R.id.button);
-        output = findViewById(R.id.textView);
-        input = findViewById(R.id.editTextNumber);
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -46,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
         while (t.top[2] != 2) {
             printStack();
             if(t.count%2!=0){
-                System.out.print("Enter to pop form: ");
+               // System.out.print("Enter to pop form: ");
                 //t.pop(sc.nextInt());
             }
 
             else{
-                System.out.print("Enter to push to: ");
+               // System.out.print("Enter to push to: ");
                 // t.push(sc.nextInt());
             }
 
@@ -63,18 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
     void printStack(){
         output.setText("");
-        t.print();
+       // t.print();
         output.setText(t.s);
-    }
-    int input(){
-        int in=0;
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        return in;
     }
 
 

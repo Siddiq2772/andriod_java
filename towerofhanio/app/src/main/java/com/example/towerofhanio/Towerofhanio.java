@@ -2,9 +2,9 @@ package com.example.towerofhanio;
 
 //tower of hanio project
 
-public class towerofhanio {
+public class Towerofhanio {
     int[][] arr = new int[3][3];
-    public int[] top = new int[3];
+     int[] top = new int[3];
     int vpop;
     int temp;
     public int count=1;
@@ -12,7 +12,7 @@ public class towerofhanio {
     void print(String st){
         s.append(st);
     }
-    towerofhanio() {
+    Towerofhanio() {
         for (int i = 2; i >= 0; i--) {
             arr[0][i] = 3 - i;
             top[i] = -1;
