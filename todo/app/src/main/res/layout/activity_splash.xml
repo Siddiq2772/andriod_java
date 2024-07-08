@@ -15,7 +15,7 @@
         android:textSize="40sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:drawableRight="@drawable/ic_baseline_done_all_24"
+        android:drawableLeft="@drawable/baseline_task_24"
         android:drawablePadding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

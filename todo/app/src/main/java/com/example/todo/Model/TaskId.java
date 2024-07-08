@@ -1,4 +1,4 @@
-package com.codingstuff.todolist.Model;
+package com.example.todo.Model;
 
 
 import androidx.annotation.NonNull;

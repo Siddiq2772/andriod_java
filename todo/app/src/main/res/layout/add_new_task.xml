@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
-        android:drawableRight="@drawable/ic_baseline_calendar_today_24"
+        android:drawableRight="@drawable/baseline_calendar_today_24"
         android:drawablePadding="8dp"
         android:text="Set Due Date"
         android:textColor="@color/green_blue"

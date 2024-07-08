@@ -1,4 +1,4 @@
-package com.codingstuff.todolist;
+package com.example.todo;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -29,9 +29,10 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.example.todo.R;
 
 public class AddNewTask  extends BottomSheetDialogFragment {
 

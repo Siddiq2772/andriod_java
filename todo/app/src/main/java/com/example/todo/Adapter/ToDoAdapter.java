@@ -1,4 +1,4 @@
-package com.codingstuff.todolist.Adapter;
+package com.example.todo.Adapter;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,25 +10,28 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.codingstuff.todolist.AddNewTask;
-import com.codingstuff.todolist.MainActivity;
-import com.codingstuff.todolist.Model.ToDoModel;
-import com.codingstuff.todolist.R;
+import com.example.todo.AddNewTask;
+import com.example.todo.MainActivity;
+import com.example.todo.Model.ToDoModel;
+
+
+import com.example.todo.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
+
+
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> {
 
-    private List<ToDoModel> todoList;
+    private List<ToDoModel> todo;
     private MainActivity activity;
     private FirebaseFirestore firestore;
 
-    public ToDoAdapter(MainActivity mainActivity , List<ToDoModel> todoList){
-        this.todoList = todoList;
+    public ToDoAdapter(MainActivity mainActivity , List<ToDoModel> todo){
+        this.todo = todo;
         activity = mainActivity;
     }
 
@@ -42,16 +45,16 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
     }
 
     public void deleteTask(int position){
-        ToDoModel toDoModel = todoList.get(position);
+        ToDoModel toDoModel = todo.get(position);
         firestore.collection("task").document(toDoModel.TaskId).delete();
-        todoList.remove(position);
+        todo.remove(position);
         notifyItemRemoved(position);
     }
     public Context getContext(){
         return activity;
     }
     public void editTask(int position){
-        ToDoModel toDoModel = todoList.get(position);
+        ToDoModel toDoModel = todo.get(position);
 
         Bundle bundle = new Bundle();
         bundle.putString("task" , toDoModel.getTask());
@@ -65,7 +68,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        ToDoModel toDoModel = todoList.get(position);
+        ToDoModel toDoModel = todo.get(position);
         holder.mCheckBox.setText(toDoModel.getTask());
 
         holder.mDueDateTv.setText("Due On " + toDoModel.getDue());
@@ -91,7 +94,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        return todoList.size();
+        return todo.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

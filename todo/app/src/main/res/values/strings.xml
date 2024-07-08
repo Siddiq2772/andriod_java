@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">todo</string>
+    <string name="app_name">TO DO</string>
+    <string name="demo">task 1 here</string>
 </resources>
