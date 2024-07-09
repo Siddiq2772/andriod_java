@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background shape -->
+    <item android:height="50sp"
+        android:width="50sp">
+        <shape android:shape="rectangle"
+            >
+            <solid android:color="@color/green_blue"
+
+                /> <!-- Black background -->
+        </shape>
+    </item>
+    <!-- Your vector drawable -->
+    <item android:drawable="@drawable/img" />
+</layer-list>
