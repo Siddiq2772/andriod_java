@@ -27,11 +27,11 @@
     <EditText
         android:id="@+id/editTextContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
         android:hint="Note Content"
-        android:textSize="14sp"
         android:inputType="textMultiLine"
         android:minLines="3"
-        android:layout_marginBottom="8dp"/>
+        android:textSize="14sp" />
 
 </LinearLayout>
