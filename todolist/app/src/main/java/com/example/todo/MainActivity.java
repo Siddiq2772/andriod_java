@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
     private List<ToDoModel> mList;
     private Query query;
     private ListenerRegistration listenerRegistration;
+    public int count =0;
 
 
     @Override
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                count++;
                 AddNewTask.newInstance().show(getSupportFragmentManager() , AddNewTask.TAG);
             }
         });
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelper(adapter));
         itemTouchHelper.attachToRecyclerView(recyclerView);
-        showData();
+       // showData();
         recyclerView.setAdapter(adapter);
     }
     private void showData(){
@@ -71,12 +73,15 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 for (DocumentChange documentChange : value.getDocumentChanges()){
-                    if (documentChange.getType() == DocumentChange.Type.ADDED){
-                        String id = documentChange.getDocument().getId();
-                        ToDoModel toDoModel = documentChange.getDocument().toObject(ToDoModel.class).withId(id);
-                        mList.add(toDoModel);
-                        adapter.notifyDataSetChanged();
+
+                        if (documentChange.getType() == DocumentChange.Type.ADDED){
+                            String id = documentChange.getDocument().getId();
+                            ToDoModel toDoModel = documentChange.getDocument().toObject(ToDoModel.class).withId(id);
+                            mList.add(toDoModel);
+                            adapter.notifyDataSetChanged();
+
                     }
+
                 }
                 listenerRegistration.remove();
 

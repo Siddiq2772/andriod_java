@@ -40,6 +40,7 @@ dependencies {
     // ConstraintLayout for complex layouts
     implementation 'com.google.firebase:firebase-firestore:25.0.0'  // Firebase Firestore SDK
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.4'
+    implementation libs.activity
     // RecyclerViewSwipeDecorator for swipe actions
 
     testImplementation 'junit:junit:4.13.2'  // Unit testing framework

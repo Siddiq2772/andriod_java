@@ -7,5 +7,5 @@
         </shape>
     </item>
     <!-- Your vector drawable -->
-    <item android:drawable="@drawable/baseline_task_24" />
+    <item android:drawable="@drawable/tasks" />
 </layer-list>

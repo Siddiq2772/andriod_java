@@ -28,8 +28,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import com.example.todo.R;
@@ -43,7 +45,7 @@ public class AddNewTask  extends BottomSheetDialogFragment {
     private Button mSaveBtn;
     private FirebaseFirestore firestore;
     private Context context;
-    private String dueDate = "";
+    private String dueDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Calendar.getInstance().getTime());
     private String id = "";
     private String dueDateUpdate = "";
 
@@ -73,7 +75,7 @@ public class AddNewTask  extends BottomSheetDialogFragment {
         final Bundle bundle = getArguments();
         if (bundle != null){
             isUpdate = true;
-            String task = bundle.getString("task");
+            String task = bundle.getString(login.utask);
             id = bundle.getString("id");
             dueDateUpdate = bundle.getString("due");
 
@@ -132,15 +134,15 @@ public class AddNewTask  extends BottomSheetDialogFragment {
             }
         });
 
-        boolean finalIsUpdate = isUpdate;
+        boolean finalIsUpdate1 = isUpdate;
         mSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String task = mTaskEdit.getText().toString();
 
-                if (finalIsUpdate){
-                    firestore.collection("task").document(id).update("task" , task , "due" , dueDate);
+                if (finalIsUpdate1){
+                    firestore.collection(login.utask).document(id).update(login.utask , task , "due" , dueDate);
                     Toast.makeText(context, "Task Updated", Toast.LENGTH_SHORT).show();
 
                 }
@@ -156,7 +158,7 @@ public class AddNewTask  extends BottomSheetDialogFragment {
                         taskMap.put("status", 0);
                         taskMap.put("time", FieldValue.serverTimestamp());
 
-                        firestore.collection("task").add(taskMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                        firestore.collection(login.utask).add(taskMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentReference> task) {
                                 if (task.isSuccessful()) {

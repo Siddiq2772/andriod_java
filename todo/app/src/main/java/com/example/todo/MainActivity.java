@@ -1,16 +1,11 @@
 package com.example.todo;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Switch;
-import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
@@ -32,8 +27,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.todo.R;
 
 
 public class MainActivity extends AppCompatActivity implements OnDialogCloseListner{
@@ -90,9 +83,11 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
         itemTouchHelper.attachToRecyclerView(recyclerView);
         showData();
         recyclerView.setAdapter(adapter);
+
+        
     }
     private void showData(){
-       query = firestore.collection("task").orderBy("time" , Query.Direction.DESCENDING);
+       query = firestore.collection(login.utask).orderBy("time" , Query.Direction.DESCENDING);
 
        listenerRegistration = query.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override

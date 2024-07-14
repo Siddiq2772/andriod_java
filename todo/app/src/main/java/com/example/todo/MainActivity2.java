@@ -89,7 +89,7 @@ public class MainActivity2 extends AppCompatActivity implements OnDialogCloseLis
     }
 
     private void fetchData() {
-        query = firestore.collection("notes").orderBy("timestamp", Query.Direction.DESCENDING);
+        query = firestore.collection(login.unotes).orderBy("timestamp", Query.Direction.DESCENDING);
 
         query.addSnapshotListener((value, error) -> {
             if (error != null) {

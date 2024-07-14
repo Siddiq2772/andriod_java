@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.example.todo.Model.ToDoModel;
 
 
 import com.example.todo.R;
+import com.example.todo.login;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -46,7 +48,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
 
     public void deleteTask(int position){
         ToDoModel toDoModel = todo.get(position);
-        firestore.collection("task").document(toDoModel.TaskId).delete();
+        firestore.collection(login.utask).document(toDoModel.TaskId).delete();
         todo.remove(position);
         notifyItemRemoved(position);
     }
@@ -57,7 +59,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         ToDoModel toDoModel = todo.get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putString("task" , toDoModel.getTask());
+        bundle.putString(login.utask , toDoModel.getTask());
         bundle.putString("due" , toDoModel.getDue());
         bundle.putString("id" , toDoModel.TaskId);
 
@@ -74,14 +76,15 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         holder.mDueDateTv.setText("Due On " + toDoModel.getDue());
 
         holder.mCheckBox.setChecked(toBoolean(toDoModel.getStatus()));
+        holder.itemView.setOnClickListener(v -> editTask(position));
 
         holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    firestore.collection("task").document(toDoModel.TaskId).update("status" , 1);
+                    firestore.collection(login.utask).document(toDoModel.TaskId).update("status" , 1);
                 }else{
-                    firestore.collection("task").document(toDoModel.TaskId).update("status" , 0);
+                    firestore.collection(login.utask).document(toDoModel.TaskId).update("status" , 0);
                 }
             }
         });

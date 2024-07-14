@@ -1,5 +1,7 @@
 package com.example.todo;
 
+import static com.example.todo.login.unotes;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -15,7 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.fragment.app.DialogFragment;
 
 import com.example.todo.Model.NoteModel;
@@ -57,14 +59,14 @@ public class AddNewNote extends DialogFragment {
         final Bundle bundle = getArguments();
         if (bundle != null) {
             isUpdate = true;
-            String task = bundle.getString("title");
+            String title = bundle.getString("title");
             id = bundle.getString("id");
             content = bundle.getString("content");
 
-            editTextTitle.setText(task);
+            editTextTitle.setText(title);
             editTextContent.setText(content);
 
-            if (task.length() <= 0) {
+            if (title.length() <= 0) {
                 buttonSave.setEnabled(false);
                 buttonSave.setBackgroundColor(Color.GRAY);
             }
@@ -98,7 +100,7 @@ public class AddNewNote extends DialogFragment {
         String timestamp = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(Calendar.getInstance().getTime());
 
         if (isUpdate) {
-            firestore.collection("notes")
+            firestore.collection(unotes)
                     .document(id)
                     .update("title", title, "content", content, "timestamp", timestamp)
                     .addOnSuccessListener(aVoid -> {
@@ -113,7 +115,7 @@ public class AddNewNote extends DialogFragment {
         } else {
             NoteModel note = new NoteModel(title, content, timestamp);
 
-            firestore.collection("notes")
+            firestore.collection(unotes)
                     .add(note)
                     .addOnSuccessListener(documentReference -> {
                         dismiss();

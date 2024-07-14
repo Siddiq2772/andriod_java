@@ -1,6 +1,5 @@
 package com.example.todo.Adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +15,7 @@ import com.example.todo.AddNewNote;
 import com.example.todo.MainActivity2;
 import com.example.todo.Model.NoteModel;
 import com.example.todo.R;
+import com.example.todo.login;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -28,7 +28,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     public NoteAdapter(MainActivity2 activity, List<NoteModel> notes) {
         this.notes = notes;
         this.activity = activity;
-
     }
 
     @NonNull
@@ -43,9 +42,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         NoteModel noteModel = notes.get(position);
         holder.title.setText(noteModel.getTitle());
-        holder.content.setText(noteModel.getContent());
+        //holder.content.setText(noteModel.getContent());
         holder.timespan.setText(noteModel.getTimestamp());
 
+        holder.itemView.setOnClickListener(v -> editTask(position));
     }
 
     @Override
@@ -55,7 +55,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     public void deleteTask(int position) {
         NoteModel noteModel = notes.get(position);
-        firestore.collection("notes").document(noteModel.getNoteId()).delete()
+        firestore.collection(login.unotes).document(noteModel.getNoteId()).delete()
                 .addOnSuccessListener(aVoid -> {
                     notes.remove(position);
                     notifyItemRemoved(position);
@@ -76,7 +76,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         AddNewNote addNewNote = new AddNewNote();
         addNewNote.setArguments(bundle);
         addNewNote.show(activity.getSupportFragmentManager(), addNewNote.getTag());
-      //  deleteTask(position);
     }
 
     public Context getContext() {
@@ -84,12 +83,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title, content,timespan;
+        TextView title, timespan;
 
         public ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textViewTitle);
-            content = itemView.findViewById(R.id.textViewContent);
+           // content = itemView.findViewById(R.id.textViewContent);
             timespan = itemView.findViewById(R.id.textViewTimestamp);
         }
     }

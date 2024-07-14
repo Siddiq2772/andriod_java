@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/teal_200"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -20,17 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Note Title"
-            android:textColor="@color/black"
             android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textViewContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Note Content"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/textViewTimestamp"
@@ -38,7 +27,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Timestamp"
-            android:textColor="@color/black"
             android:textSize="12sp" />
 
     </LinearLayout>
