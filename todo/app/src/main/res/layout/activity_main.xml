@@ -28,30 +28,37 @@
         tools:layout_editor_absoluteX="57dp"
         tools:layout_editor_absoluteY="65dp">
 
-        <RadioGroup
-            android:id="@+id/radioGroup"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/radioButtonToDo"
+            <Button
+                android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:checked="true"
-                android:text="List" />
+                android:backgroundTint="@android:color/darker_gray"
+                android:drawableLeft="@drawable/baseline_task_alt_24"
+                android:text="TASKS" />
 
-            <RadioButton
-                android:id="@+id/radioButtonNotes"
+            <Button
+                android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Notes" />
-        </RadioGroup>
+                android:layout_marginLeft="10sp"
+                android:backgroundTint="@color/green_blue"
+                android:drawableLeft="@drawable/baseline_task_24"
+                android:onClick="jumpToNotes"
+                android:text="NOTES" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycerlview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

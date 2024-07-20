@@ -59,7 +59,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         ToDoModel toDoModel = todo.get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putString(login.utask , toDoModel.getTask());
+        bundle.putString("task" , toDoModel.getTask());
         bundle.putString("due" , toDoModel.getDue());
         bundle.putString("id" , toDoModel.TaskId);
 

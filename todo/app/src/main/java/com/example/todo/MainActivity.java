@@ -1,11 +1,15 @@
 package com.example.todo;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
@@ -37,13 +41,15 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
     private ToDoAdapter adapter;
     private List<ToDoModel> mList;
 
+
     private Query query;
     private ListenerRegistration listenerRegistration;
-    private RadioGroup radioGroup;
 
 
 
 
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,23 +57,26 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
         recyclerView = findViewById(R.id.recycerlview);
         mFab = findViewById(R.id.floatingActionButton);
         firestore = FirebaseFirestore.getInstance();
-        radioGroup = findViewById(R.id.radioGroup);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            
-            @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                checkedId = radioGroup.getCheckedRadioButtonId();
-                RadioButton selectedButton = findViewById(checkedId);
-                Intent intent = null;
-                if (checkedId == R.id.radioButtonNotes) {
-                    intent = new Intent(MainActivity.this, MainActivity2.class);
-                    startActivityWithAnimation(intent);
-                }
-            }
-        });
+
+
+
+//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+//                checkedId = radioGroup.getCheckedRadioButtonId();
+//                RadioButton selectedButton = findViewById(checkedId);
+//                Intent intent = null;
+//                if (checkedId == R.id.radioButtonNotes) {
+//                    intent = new Intent(MainActivity.this, MainActivity2.class);
+//                    startActivityWithAnimation(intent);
+//                }
+//            }
+//        });
 
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +128,14 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
     }
     @Override
     public void onDialogClose() {
+
+    }
+
+    public void jumpToNotes(View v){
+       Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+        Toast.makeText(this, "TO DO Notes", Toast.LENGTH_SHORT).show();
+        startActivityWithAnimation(intent);
+
 
     }
 }

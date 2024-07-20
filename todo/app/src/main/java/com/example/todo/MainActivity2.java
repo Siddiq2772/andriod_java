@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.view.animation.Animation;
@@ -34,7 +35,7 @@ public class MainActivity2 extends AppCompatActivity implements OnDialogCloseLis
     private FloatingActionButton fabAddNote;
     private FirebaseFirestore firestore;
     private NoteAdapter noteAdapter;
-    private RadioGroup radioGroup;
+   // private RadioGroup radioGroup;
 
     private List<NoteModel> noteList;
     private Query query;
@@ -46,7 +47,7 @@ public class MainActivity2 extends AppCompatActivity implements OnDialogCloseLis
         setContentView(R.layout.activity_main2);
 
         firestore = FirebaseFirestore.getInstance();
-        radioGroup = findViewById(R.id.radioGroup);
+        //radioGroup = findViewById(R.id.radioGroup);
 
         recyclerView = findViewById(R.id.recyclerView2);
         fabAddNote = findViewById(R.id.fabAddNote);
@@ -59,21 +60,23 @@ public class MainActivity2 extends AppCompatActivity implements OnDialogCloseLis
         recyclerView.setHasFixedSize(true);
 
 
+//
+//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+//                checkedId =radioGroup.getCheckedRadioButtonId();
+//                RadioButton selectedButton = findViewById(checkedId);
+//                Intent intent = null;
+//                if (checkedId == R.id.radioButtonToDo)
+//                {
+//                    intent = new Intent(MainActivity2.this, MainActivity.class);
+//                    startActivityWithAnimation(intent);
+//                }
+//            }
+//        });
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                checkedId =radioGroup.getCheckedRadioButtonId();
-                RadioButton selectedButton = findViewById(checkedId);
-                Intent intent = null;
-                if (checkedId == R.id.radioButtonToDo)
-                {
-                    intent = new Intent(MainActivity2.this, MainActivity.class);
-                    startActivityWithAnimation(intent);
-                }
-            }
-        });
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelper(noteAdapter));
         itemTouchHelper.attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(noteAdapter);
@@ -121,6 +124,14 @@ public class MainActivity2 extends AppCompatActivity implements OnDialogCloseLis
     }
     @Override
     public void onDialogClose() {
+
+    }
+    public void jumpToList(View v){
+        Intent intent = new Intent(MainActivity2.this, MainActivity.class);
+        Toast.makeText(this, "TO DO TASKS", Toast.LENGTH_SHORT).show();
+        
+        startActivityWithAnimation(intent);
+
 
     }
 }

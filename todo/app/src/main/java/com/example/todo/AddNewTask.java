@@ -75,7 +75,7 @@ public class AddNewTask  extends BottomSheetDialogFragment {
         final Bundle bundle = getArguments();
         if (bundle != null){
             isUpdate = true;
-            String task = bundle.getString(login.utask);
+            String task = bundle.getString("task");
             id = bundle.getString("id");
             dueDateUpdate = bundle.getString("due");
 
@@ -142,7 +142,7 @@ public class AddNewTask  extends BottomSheetDialogFragment {
                 String task = mTaskEdit.getText().toString();
 
                 if (finalIsUpdate1){
-                    firestore.collection(login.utask).document(id).update(login.utask , task , "due" , dueDate);
+                    firestore.collection(login.utask).document(id).update("task" , task , "due" , dueDate);
                     Toast.makeText(context, "Task Updated", Toast.LENGTH_SHORT).show();
 
                 }
