@@ -54,10 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 Map store= new HashMap<>();
                 store.put(Email,password);
 
-//                if()
-//                    Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-//                else
-//                    Toast.makeText(MainActivity.this, "login UnSuccessful", Toast.LENGTH_SHORT).show();
                 firebase.collection("loginapp").add(store).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
